@@ -14,9 +14,6 @@ PERFT analyzes the dynamics between key memory vectors in experts and expert vec
 
 This project provides tools and methods for fine-tuning Mixture of Experts models efficiently with minimal parameter updates. It supports both **Mixtral-8×7B** and **OLMoE-1B-7B** architectures and includes implementations for:
 
-- **LoRA (Low-Rank Adaptation)**: Standard low-rank adaptation (MoE-agnostic baseline)
-- **QvLoRA (Quantized LoRA)**: Memory-efficient quantized LoRA
-- **Parallel Adapter**: Parallel adapter layers
 - **PERFT (Parameter-Efficient Routed Fine-Tuning)**: Routed adaptation strategies with three variants:
   - **PERFT-E**: Embedded routing adapters
   - **PERFT-D**: Distributed/shared routing adapters  
@@ -202,15 +199,6 @@ PERFT supports three main strategies for routing adaptation modules:
 - `--eval_step`: Evaluation frequency in steps
 - `--save_step`: Checkpoint saving frequency in steps
 
-## Key Contributions
-
-This work provides:
-
-1. **Analysis of Dynamics**: Investigation of the dynamics between key memory vectors in experts and expert vectors in routers when applying PEFT to MoE LLMs
-2. **Framework & Strategies**: Systematic exploration framework with functional strategies (architecture, multiplicity, routing) and compositional strategies (interaction with MoE modules)
-3. **PERFT Method**: Parameter-Efficient Routed Fine-Tuning with three ablated variants (PERFT-E/D/S)
-4. **Evidence & Guidelines**: Empirical validation showing PERFT yields up to **17.9% average improvement** over MoE-agnostic baselines with equivalent activated parameters, along with optimal scaling, sparsity, and routing configurations
-
 ## Datasets
 
 The repository is configured for evaluation on 14 commonsense and arithmetic reasoning tasks:
@@ -244,35 +232,7 @@ sbatch OLMoE-1B-7B.parallel.sh
 
 Job scripts are configured for multi-GPU training and can be modified based on your cluster setup.
 
-## Citation
 
-If you use this code in your research, please cite the paper:
-
-```bibtex
-@article{perft2024,
-  title={Parameter-Efficient Routed Fine-Tuning: Mixture-of-Experts Demands Mixture of Adaptation Modules},
-  author={Yilun Liu and Yunpu Ma and Yuetian Lu and Shuo Chen and Zifeng Ding and Volker Tresp},
-  journal={...},
-  year={2024}
-}
-```
-
-**Paper**: [PEFT_for_MoE_ARR_25_camera_ready.pdf](PEFT_for_MoE_ARR_25_camera_ready.pdf)
-
-## License
-
-This project is licensed under the Apache License 2.0. See the LICENSE files in the respective task directories for details.
-
-## Acknowledgments
-
-This implementation builds upon:
-- HuggingFace Transformers
-- PEFT library
-- Mixtral and OLMoE model implementations
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Contact
 
